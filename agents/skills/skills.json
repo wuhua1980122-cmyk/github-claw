@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "agents": [
+    {
+      "name": "claw-agent",
+      "displayName": "🦞 Claw Agent",
+      "description": "长期驻留在仓库的个人 AI 助手，具备角色、记忆和技能体系",
+      "identity": "AGENTS.md",
+      "memory": "MEMORY.md",
+      "skills": [
+        {
+          "name": "website-optimizer",
+          "path": "agents/skills/website-optimizer",
+          "displayName": "网站优化",
+          "description": "优化前端 UI/UX、性能、SEO 和可访问性",
+          "triggers": ["优化网站", "美化界面", "提升用户体验", "UI/UX", "前端优化"],
+          "entry": "skill.md"
+        },
+        {
+          "name": "seo-audit",
+          "path": "agents/skills/seo-audit",
+          "displayName": "SEO 审计",
+          "description": "全面 SEO 审计和优化，提升搜索引擎排名",
+          "triggers": ["SEO", "搜索引擎优化", "排名", "收录", "关键词"],
+          "entry": "skill.md"
+        },
+        {
+          "name": "ai-image-generation",
+          "path": "agents/skills/ai-image-generation",
+          "displayName": "AI 图像生成",
+          "description": "使用 DeepSeek API 生成配图描述和 SVG",
+          "triggers": ["生成图片", "配图", "AI 绘图", "image generation"],
+          "entry": "skill.md",
+          "config": {
+            "api": "DeepSeek API",
+            "key_env": "DEEPSEEK_API_KEY"
+          }
+        }
+      ],
+      "projects": [
+        {
+          "name": "AI Guide",
+          "path": "projects/ai-guide",
+          "description": "AI 知识导航网站，已部署 GitHub Pages",
+          "url": "https://wuhua1980122-cmyk.github.io/github-claw/"
+        },
+        {
+          "name": "多媒体处理平台",
+          "path": "projects/media-platform",
+          "description": "全栈多媒体处理平台（Vue + Flask）"
+        }
+      ],
+      "automations": [
+        {
+          "name": "GitHub Pages 部署",
+          "workflow": ".github/workflows/pages.yml"
+        },
+        {
+          "name": "Issue 自动回复",
+          "workflow": ".github/workflows/auto-reply.yml"
+        },
+        {
+          "name": "每日科技日报",
+          "workflow": ".github/workflows/daily-digest.yml"
+        }
+      ]
+    }
+  ]
+}
