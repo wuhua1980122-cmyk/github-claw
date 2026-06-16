@@ -1,0 +1,29 @@
+{
+    "name": "GitHub Claw Dev Environment",
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.12"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22"
+        }
+    },
+    "postCreateCommand": "pip install flask pillow python-docx && npm install -g http-server",
+    "forwardPorts": [3000, 5000, 5173],
+    "portsAttributes": {
+        "3000": { "label": "Vue Dev Server", "onAutoForward": "notify" },
+        "5000": { "label": "Python Backend", "onAutoForward": "notify" },
+        "5173": { "label": "Vite Server", "onAutoForward": "notify" }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.copilot",
+                "github.copilot-chat",
+                "ms-python.python",
+                "Vue.volar"
+            ]
+        }
+    }
+}

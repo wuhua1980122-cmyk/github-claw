@@ -1,0 +1,39 @@
+name: Auto Reply Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  auto-reply:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Auto reply to issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+            const title = issue.title || '';
+            
+            let reply = '👋 感谢提交 Issue！\n\n';
+            reply += '🤖 我是 Claw Agent，已经收到你的反馈。';
+            
+            if (body.toLowerCase().includes('bug') || body.toLowerCase().includes('错误') || body.toLowerCase().includes('问题')) {
+              reply += '\n\n🔍 这看起来像是一个 Bug 报告，我会尽快分析并处理。';
+            } else if (body.toLowerCase().includes('建议') || body.toLowerCase().includes('feature') || body.toLowerCase().includes('功能')) {
+              reply += '\n\n💡 感谢你的功能建议！我会评估并纳入路线图。';
+            } else {
+              reply += '\n\n📋 我会查看详情并尽快回复。';
+            }
+            
+            reply += '\n\n---\n*自动回复 · Claw Agent*';
+            
+            await github.rest.issues.createComment({
+              issue_number: issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: reply
+            });
